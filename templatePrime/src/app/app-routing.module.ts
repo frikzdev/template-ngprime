@@ -1,10 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+
+
+export enum AppRoutesNames {
+ 
+  app = '',
+  auth = 'auth'
+}
+
+const routes: Routes = [
+  {
+    path: AppRoutesNames.auth,
+
+    
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then(
+        (m) => m.AuthModule
+      ),
+  },
+
+  
+  
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
